@@ -20,8 +20,8 @@ function checkArgs ({ name, userId, connectionId, clientAddress, numRequests, ti
   check(userId, isNothingStringOrFunction)
   check(connectionId, isNothingStringOrFunction)
   check(clientAddress, isNothingStringOrFunction)
-  check(numRequests, Number)
-  check(timeInterval, Number)
+  check(numRequests, Match.Maybe(Number))
+  check(timeInterval, Match.Maybe(Number))
 }
 
 function defaultUserId (userId) {
