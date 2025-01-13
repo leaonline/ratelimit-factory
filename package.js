@@ -1,7 +1,7 @@
 /* eslint-env meteor */
 Package.describe({
   name: 'leaonline:ratelimit-factory',
-  version: '1.0.0',
+  version: '2.0.0',
   // Brief, one-line summary of the package.
   summary: 'Rate-limit methods and publications. Lightweight. Simple.',
   // URL to the Git repository containing the source code for this package.
@@ -12,8 +12,9 @@ Package.describe({
 })
 
 Package.onUse(function (api) {
-  api.versionsFrom('1.6')
+  api.versionsFrom(['1.6', '2.8.0', '3.0.1'])
   api.use('ecmascript', 'server')
+  api.use('ddp-rate-limiter', 'server')
   api.use('sha','server')
   api.mainModule('ratelimit-factory.js', 'server')
 })

@@ -24,8 +24,8 @@ function checkArgs ({ name, userId, connectionId, clientAddress, numRequests, ti
   check(timeInterval, Match.Maybe(Number))
 }
 
-function defaultUserId (userId) {
-  return userId && Meteor.users.findOne(userId)
+async function defaultUserId (userId) {
+  return userId && Meteor.users.findOneAsync(userId)
 }
 
 function defaultConnectionId () {
