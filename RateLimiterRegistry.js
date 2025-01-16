@@ -78,11 +78,11 @@ function checkAll (functions, type, strict) {
     .filter(name => name && name.length > 0)
     .forEach(target => {
       if (!RateLimiterRegistry.has(target)) {
-        const rateLimitError = new Error(`FATAL - ${type} <${target}> is not rate limited`)
+        const message = `FATAL - ${type} <${target}> is not rate limited`
         if (strict) {
-          throw rateLimitError
+          throw new Error(message)
         } else {
-          console.error(rateLimitError)
+          console.warn(message)
         }
       }
     })
@@ -117,7 +117,7 @@ export const RateLimiterRegistry = {
     _run(_subscriptions, 'subscription', limitExceededCallback)
   },
 
-  sanityCheck (strict = true) {
+  sanityCheck (strict) {
     checkAll(Object.values(Meteor.server.method_handlers), 'method', strict)
     checkAll(Object.keys(Meteor.server.publish_handlers), 'publication', strict)
   }
